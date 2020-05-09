@@ -26,10 +26,38 @@
 
 ## 📦 Installation
 
+### 👋 PeerDependencies first
+This module uses [react-native-fast-image](https://github.com/DylanVann/react-native-fast-image) for rendering images, so you should install it first besides with `react` and `react-native`.
+
+```bash
+npm install react-native-fast-image
+# Or using yarn
+yarn add react-native-fast-image
+```
+
+### 🙌 The package
+
 ```bash
 npm install react-native-animated-webp
 # Or using yarn
 yarn add react-native-animated-webp
+```
+
+###  For iOS
+Add the following three lines inside your project's [./ios/{YourAppName}/AppDelegate.m](./example/ios/example/AppDelegate.m) file for [Animated WebP support](https://github.com/DylanVann/react-native-fast-image/issues/522).
+
+```diff
++ #import "SDImageCodersManager.h"
++ #import <SDWebImageWebPCoder/SDImageWebPCoder.h>
+
+﹣ (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // . . .
+
++    [SDImageCodersManager.sharedManager addCoder:SDImageWebPCoder.sharedCoder];
+
+    // . . .
+}
 ```
 
 ## 🥁 Usage
@@ -37,13 +65,13 @@ yarn add react-native-animated-webp
 ```tsx
 import React, { useRef } from 'react';
 import { Button, View } from 'react-native';
-import AnimatedPlayer from 'react-native-animated-webp';
+import AnimatedPlayer, { IAnimatedPlayerReference } from 'react-native-animated-webp';
 
 import thumbnailImage from '../assets/thumbnail.png';
 import animatedWebPImage from '../assets/animated.webp';
 
 const App: React.FC = () => {
-  const playerRef = useRef();
+  const playerRef = useRef<IAnimatedPlayerReference>();
 
   const onPressButton = () => {
     if(!playerRef.current?.isPlaying) {
