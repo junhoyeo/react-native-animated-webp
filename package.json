@@ -1,6 +1,6 @@
 {
   "name": "react-native-animated-webp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Display and control Animated WebP images in React Native the hacky way",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -22,9 +22,7 @@
   ],
   "peerDependencies": {
     "react": "^16.13.1",
-    "react-native": "^0.62.2"
-  },
-  "dependencies": {
+    "react-native": "^0.62.2",
     "react-native-fast-image": "^8.1.5"
   },
   "devDependencies": {

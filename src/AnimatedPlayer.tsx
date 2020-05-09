@@ -19,8 +19,8 @@ interface IAnimatedPlayer {
 }
 
 const AnimatedPlayer: React.FC<IAnimatedPlayer> = forwardRef(
-  ({ thumbnailSource, animatedSource, duration, style, delay = 0, autoplay = false, loop = false }, ref) => {
-    const [isPlaying, setIsPlaying] = useState(autoplay);
+  ({ thumbnailSource, animatedSource, duration = 0, style, delay = 0, autoplay = false, loop = false }, ref) => {
+    const [isPlaying, setIsPlaying] = useState(false);
     const [playIntervalID, setPlayIntervalID] = useState<number | undefined>(undefined);
     const [loopIntervalID, setLoopIntervalID] = useState<number | undefined>(undefined);
 
@@ -29,11 +29,16 @@ const AnimatedPlayer: React.FC<IAnimatedPlayer> = forwardRef(
       [isPlaying],
     );
 
-    const play = () => {
+    const play = (timeoutCallback?: () => void) => {
       setIsPlaying(true);
       if (duration && duration > 0) {
-        setPlayIntervalID(setInterval(
-          () => setIsPlaying(false),
+        setPlayIntervalID(setTimeout(
+          () => {
+            setIsPlaying(false);
+            if (timeoutCallback) {
+              timeoutCallback();
+            }
+          },
           duration,
         ));
       }
@@ -41,17 +46,20 @@ const AnimatedPlayer: React.FC<IAnimatedPlayer> = forwardRef(
 
     const stop = () => {
       if (isPlaying) {
-        clearInterval(playIntervalID);
+        clearTimeout(playIntervalID);
       }
       setIsPlaying(false);
     };
 
     useEffect(
       () => {
+        if (autoplay) {
+          play();
+        }
         if (loop) {
           setLoopIntervalID(setInterval(
             play,
-            delay,
+            delay + duration,
           ));
           return clearInterval(loopIntervalID);
         }
