@@ -1,5 +1,26 @@
-# 💃🏻 react-native-animated-webp
-[![repo status](https://img.shields.io/badge/repo%20status-Concept-010101?style=for-the-badge)](https://www.repostatus.org/)
+<h1 align="center">
+  💃🏻 react-native-animated-webp
+</h1>
+<p align="center">
+  <img alt="example animated player" src="./docs/images/example.gif" width="312px">
+  <br />
+  <a href="https://www.npmjs.org/package/react-native-animated-webp">
+    <img alt="npm version" src="https://img.shields.io/npm/v/react-native-animated-webp.svg?style=flat-square" />
+  </a>
+  <a href="https://www.npmjs.org/package/react-native-animated-webp">
+    <img alt="weekly downloads" src="https://img.shields.io/npm/dw/react-native-animated-webp.svg?style=flat-square" />
+  </a>
+  <a href="https://www.npmjs.org/package/react-native-animated-webp">
+    <img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/react-native-animated-webp.svg?style=flat-square" />
+  </a>
+  <a href="./LICENSE">
+    <img alit="license" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" />
+  </a>
+  <br />
+  <a href="https://nodei.co/npm/react-native-animated-webp/">
+    <img alt="NPM" src="https://nodei.co/npm/react-native-animated-webp.png" />
+  </a>
+</p>
 
 > Display and control **Animated WebP** images in React Native the **hacky** way
 
@@ -26,7 +47,7 @@ const App: React.FC = () => {
 
   const onPressButton = () => {
     if(!playerRef.current?.isPlaying) {
-      playerRef.current?.play();
+      playerRef.current?.play(() => console.log('callback after play ended'));
     }
   };
 
@@ -38,6 +59,7 @@ const App: React.FC = () => {
         animatedSource={animatedWebPImage}
         duration={500}
         autoplay={false}
+        loop={false}
       />
       <Button
         title="Click Me"
