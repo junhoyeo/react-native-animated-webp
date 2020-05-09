@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components/native';
-import AnimatedPlayer from 'react-native-animated-webp';
+import AnimatedPlayer, { IAnimatedPlayerReference } from 'react-native-animated-webp';
 
 import thumbnailImage from './assets/thumbnail.png';
 import animatedImage from './assets/animated.webp';
 
 const App = () => {
-  const playerRef = useRef<any>();
+  const playerRef = useRef<IAnimatedPlayerReference>();
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   const onPressButton = () => {
@@ -20,7 +20,7 @@ const App = () => {
   };
 
   useEffect(
-    () => setIsPlaying(playerRef.current?.isPlaying),
+    () => setIsPlaying(playerRef.current?.isPlaying || false),
     [],
   );
 

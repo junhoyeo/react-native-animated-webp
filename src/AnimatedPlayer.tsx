@@ -5,20 +5,14 @@ import React, {
   useMemo,
   useImperativeHandle,
 } from 'react';
-import { StyleProp } from 'react-native';
-import FastImage, { Source as ImageSource, ImageStyle } from 'react-native-fast-image';
+import FastImage from 'react-native-fast-image';
 
-interface IAnimatedPlayer {
-  thumbnailSource: ImageSource;
-  animatedSource: ImageSource;
-  duration?: number;
-  delay?: number;
-  autoplay?: boolean;
-  loop?: boolean;
-  style?: StyleProp<ImageStyle>;
-}
+import {
+  IAnimatedPlayer,
+  IAnimatedPlayerReference,
+} from './types';
 
-const AnimatedPlayer: React.FC<IAnimatedPlayer> = forwardRef(
+const AnimatedPlayer = forwardRef<IAnimatedPlayerReference, IAnimatedPlayer>(
   ({ thumbnailSource, animatedSource, duration = 0, style, delay = 0, autoplay = false, loop = false }, ref) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [playIntervalID, setPlayIntervalID] = useState<number | undefined>(undefined);

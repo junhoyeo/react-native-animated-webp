@@ -10,9 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "react": "16.11.0",
+    "react": "16.13.1",
     "react-native": "0.62.2",
-    "react-native-animated-webp": "^0.0.1",
+    "react-native-animated-webp": "^0.0.4",
     "react-native-fast-image": "^8.1.5",
     "styled-components": "^5.1.0"
   },
@@ -26,7 +26,7 @@
     "eslint": "^7.0.0",
     "jest": "^26.0.1",
     "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.11.0",
+    "react-test-renderer": "16.13.1",
     "typescript": "^3.8.3"
   },
   "jest": {
