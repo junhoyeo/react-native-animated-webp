@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useImperativeHandle,
 } from 'react';
+import { Platform, Image, ImageSourcePropType } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 import {
@@ -12,8 +13,10 @@ import {
   IAnimatedPlayerReference,
 } from './types';
 
+const isPlatformAndroid = Platform.OS === 'android';
+
 const AnimatedPlayer = forwardRef<IAnimatedPlayerReference, IAnimatedPlayer>(
-  ({ thumbnailSource, animatedSource, duration = 0, style, delay = 0, autoplay = false, loop = false }, ref) => {
+  ({ thumbnailSource, animatedSource, duration = 0, style = {}, delay = 0, autoplay = false, loop = false }, ref) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [playIntervalID, setPlayIntervalID] = useState<number | undefined>(undefined);
     const [loopIntervalID, setLoopIntervalID] = useState<number | undefined>(undefined);
@@ -66,6 +69,15 @@ const AnimatedPlayer = forwardRef<IAnimatedPlayerReference, IAnimatedPlayer>(
       play,
       stop,
     }));
+
+    if (isPlatformAndroid) {
+      return (
+        <Image
+          source={currentSource as ImageSourcePropType}
+          style={style as any}
+        />
+      );
+    }
 
     return (
       <FastImage

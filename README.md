@@ -43,8 +43,32 @@ npm install react-native-animated-webp
 yarn add react-native-animated-webp
 ```
 
+### 🍭 For Android
+Add dependencies for fresco, which adds native support for Animated WebP at [android/app/build.gradle](./example/android/app/build.gradle).
+
+Since `FastImage` is not working well for Animated WebP(maybe issue of Glide?), we internally use the native `Image` component for android platforms.
+
+```diff
+dependencies {
++  implementation 'com.facebook.fresco:fresco:2.0.0'
++  implementation 'com.facebook.fresco:animated-webp:+'
++  implementation 'com.facebook.fresco:webpsupport:+'
+
+  implementation fileTree(dir: "libs", include: ["*.jar"])
+  implementation "com.facebook.react:react-native:+"  // From node_modules
+
+  if (enableHermes) {
+      def hermesPath = "../../node_modules/hermes-engine/android/";
+      debugImplementation files(hermesPath + "hermes-debug.aar")
+      releaseImplementation files(hermesPath + "hermes-release.aar")
+  } else {
+      implementation jscFlavor
+  }
+}
+```
+
 ###  For iOS
-Add the following three lines inside your project's [./ios/{YourAppName}/AppDelegate.m](./example/ios/example/AppDelegate.m) file for [Animated WebP support](https://github.com/DylanVann/react-native-fast-image/issues/522).
+Add the following three lines inside your project's [ios/{YourAppName}/AppDelegate.m](./example/ios/example/AppDelegate.m) file for [Animated WebP support](https://github.com/DylanVann/react-native-fast-image/issues/522).
 
 ```diff
 + #import "SDImageCodersManager.h"

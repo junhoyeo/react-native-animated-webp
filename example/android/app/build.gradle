@@ -188,6 +188,10 @@ android {
 }
 
 dependencies {
+    implementation 'com.facebook.fresco:fresco:2.0.0'
+    implementation 'com.facebook.fresco:animated-webp:+'
+    implementation 'com.facebook.fresco:webpsupport:+'
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
