@@ -50,7 +50,7 @@ Since `FastImage` is not working well for Animated WebP(maybe issue of Glide?), 
 
 ```diff
 dependencies {
-+  implementation 'com.facebook.fresco:fresco:2.0.0'
++  implementation 'com.facebook.fresco:fresco:2.3.0'
 +  implementation 'com.facebook.fresco:animated-webp:+'
 +  implementation 'com.facebook.fresco:webpsupport:+'
 
