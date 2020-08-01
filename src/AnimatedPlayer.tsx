@@ -60,6 +60,7 @@ const AnimatedPlayer = forwardRef<IAnimatedPlayerReference, IAnimatedPlayer>(
           ));
           return clearInterval(loopIntervalID);
         }
+        return () => clearInterval(loopIntervalID);
       },
       [loop],
     );
